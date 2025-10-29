@@ -24,3 +24,4 @@ public class TimeFormat {
         System.out.println(hours + ":" + formattedMinutes + " " + period);
     }
 }
+
