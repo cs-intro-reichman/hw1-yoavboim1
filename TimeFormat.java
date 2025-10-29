@@ -1,17 +1,26 @@
-// Represents the hh:mm time format using an AM/PM format. 
+// Represents the hh:mm time format using an AM/PM format.
 public class TimeFormat {
-	public static void main(String[] args) {
-		// In Java, the command-line arguments args[0], args[1], ... are represented
-		// each by a string. In this program, the single "hh:mm" input is represented
-		// by the single command-line string argument args[0]. 
-		//   
-		// The following statement handles the hours part of the input.
-		// It concatenates the empty string "" with the leftmost hour-digit. 
-		// It then concatenates the resulting string with the rightmost hour-digit,
-		// and then uses parseInt to cast the resulting string as an int.
-		int hours = Integer.parseInt("" + args[0].charAt(0) + args[0].charAt(1));
-		// Does the same with the minutes part of the input.
-		int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
-        // Replace this comment with the rest of your code
-	}
+    public static void main(String[] args) {
+        // Parse the hours and minutes from the input string
+        int hours = Integer.parseInt("" + args[0].charAt(0) + args[0].charAt(1));
+        int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
+
+        // Determine AM or PM and adjust the hours for 12-hour format
+        String period = "AM";
+        
+        if (hours >= 12) {
+            period = "PM";
+            if (hours > 12) {
+                hours -= 12; // Convert 24-hour format to 12-hour format
+            }
+        } else if (hours == 0) {
+            hours = 12; // Midnight (00:00) is 12 AM
+        }
+        
+        // Format minutes with a leading zero if necessary
+        String formattedMinutes = (minutes < 10) ? "0" + minutes : "" + minutes;
+        
+        // Print the formatted time in 12-hour AM/PM format
+        System.out.println(hours + ":" + formattedMinutes + " " + period);
+    }
 }
